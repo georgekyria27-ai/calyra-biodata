@@ -96,11 +96,11 @@
       var status = document.getElementById('form-status');
       if (status) {
         status.textContent =
-          'Opening your email app with the message ready to send. If nothing opens, email georgekyriazis@calyrabiodata.com directly.';
+          'Opening your email app with the message ready to send. If nothing opens, email info@calyrabiodata.com directly.';
         status.hidden = false;
       }
       window.location.href =
-        'mailto:georgekyriazis@calyrabiodata.com?subject=' +
+        'mailto:info@calyrabiodata.com?subject=' +
         encodeURIComponent(subject) +
         '&body=' +
         encodeURIComponent(body);
