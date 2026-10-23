@@ -94,11 +94,28 @@
         '— sent from calyrabiodata.com',
       ].join('\n');
       var status = document.getElementById('form-status');
-      if (status) {
-        status.textContent =
-          'Opening your email app with the message ready to send. If nothing opens, email info@calyrabiodata.com directly.';
+      function say(html) {
+        if (!status) return;
+        status.innerHTML = html;
         status.hidden = false;
       }
+      var bookEl = document.querySelector('[data-book-link]');
+      var bookHref = bookEl ? bookEl.getAttribute('href') : '';
+      var fallback =
+        ' If nothing opens, email <a href="mailto:info@calyrabiodata.com">info@calyrabiodata.com</a>' +
+        (bookHref
+          ? ' or <a href="' + bookHref + '" target="_blank" rel="noopener">book a scoping call</a>'
+          : '') +
+        '.';
+      /* form has novalidate, so check required fields here */
+      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email'));
+      if (!v('name') || !emailOk) {
+        say('Please enter your name and a valid email address so we can reply.' + fallback);
+        var bad = form.querySelector(!v('name') ? '[name="name"]' : '[name="email"]');
+        if (bad) bad.focus();
+        return;
+      }
+      say('Opening your email app with the message ready to send. Press send there to complete your enquiry.' + fallback);
       window.location.href =
         'mailto:info@calyrabiodata.com?subject=' +
         encodeURIComponent(subject) +
