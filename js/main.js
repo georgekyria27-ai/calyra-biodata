@@ -115,12 +115,20 @@
         if (bad) bad.focus();
         return;
       }
-      say('Opening your email app with the message ready to send. Press send there to complete your enquiry.' + fallback);
-      window.location.href =
-        'mailto:info@calyrabiodata.com?subject=' +
-        encodeURIComponent(subject) +
-        '&body=' +
-        encodeURIComponent(body);
+      var qs = encodeURIComponent(subject), qb = encodeURIComponent(body);
+      var mailtoUrl = 'mailto:info@calyrabiodata.com?subject=' + qs + '&body=' + qb;
+      var gmailUrl =
+        'https://mail.google.com/mail/?view=cm&fs=1&to=info%40calyrabiodata.com&su=' + qs + '&body=' + qb;
+      var outlookUrl =
+        'https://outlook.live.com/mail/0/deeplink/compose?to=info%40calyrabiodata.com&subject=' + qs + '&body=' + qb;
+      say(
+        'Your message is ready. Choose how to send it: ' +
+        '<a href="' + gmailUrl + '" target="_blank" rel="noopener">Open in Gmail</a> &middot; ' +
+        '<a href="' + outlookUrl + '" target="_blank" rel="noopener">Open in Outlook</a> &middot; ' +
+        '<a href="' + mailtoUrl + '">Open in your email app</a>. ' +
+        'Press send there to complete your enquiry.' + fallback
+      );
+      window.location.href = mailtoUrl;
     });
   }
 
