@@ -306,6 +306,7 @@ h1.display {
   font-size: var(--text-2xl);
   letter-spacing: -0.035em;
 }
+h1.section-title,
 h2.section-title {
   font-size: var(--text-xl);
   margin-bottom: var(--space-4);
@@ -725,8 +726,12 @@ h3 {
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
+.card h2,
 .card h3 {
   margin-bottom: var(--space-3);
+}
+.card h2 {
+  font-size: var(--text-lg);
 }
 .card p {
   color: var(--color-text-muted);
@@ -778,6 +783,15 @@ h3 {
 }
 .check-list li strong {
   color: var(--color-text);
+}
+.check-list h3 {
+  display: inline;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--color-text);
+  margin: 0;
 }
 .check-list li::before {
   content: '';
