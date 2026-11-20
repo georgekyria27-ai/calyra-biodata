@@ -490,7 +490,12 @@ h3 {
 .nav-toggle {
   display: none;
 }
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
+  .nav {
+    gap: var(--space-4);
+  }
+}
+@media (max-width: 1100px) {
   .nav {
     position: fixed;
     inset: 68px 0 auto;
@@ -562,12 +567,30 @@ h3 {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
-  gap: clamp(var(--space-10), 5vw, var(--space-20));
+  column-gap: clamp(var(--space-10), 5vw, var(--space-20));
+  row-gap: var(--space-8);
   align-items: center;
+}
+.hero .btn-row {
+  grid-column: 1 / -1;
+  margin-top: 0;
 }
 @media (max-width: 940px) {
   .hero__inner {
     grid-template-columns: 1fr;
+  }
+  .hero__copy { order: 1; }
+  .hero .btn-row { order: 2; }
+  .hero .chart-card { order: 3; }
+}
+@media (max-width: 620px) {
+  .hero .btn-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero .btn-row .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 .hero h1 {
@@ -660,6 +683,11 @@ h3 {
 .grid--2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+.grid--2 > :nth-child(5):last-child {
+  grid-column: 1 / -1;
+  width: calc((100% - var(--space-6)) / 2);
+  justify-self: center;
+}
 .grid--3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -681,6 +709,9 @@ h3 {
   .grid--3,
   .grid--4 {
     grid-template-columns: 1fr;
+  }
+  .grid--2 > :nth-child(5):last-child {
+    width: 100%;
   }
 }
 .card {
